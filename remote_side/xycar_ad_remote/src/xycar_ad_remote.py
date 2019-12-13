@@ -11,12 +11,10 @@ from cv_bridge import CvBridge
 
 import subprocess
 
-#import yolo
-
 class RemoteXycar(object):
 	
 	def __init__(self):
-		self.yolo_path = '/home/ysg/xycar/src/xycar_ad_remote/src/'
+		self.yolo_path = '/home/ysg/xycar/src/xycar_ad_remote/src/' # location of Yolo
 		rospy.init_node('xycar_remote')
 		self.pub = rospy.Publisher('/remote_pub', Int32MultiArray, queue_size=1)
 		rospy.Subscriber('/remote_rec', Image, self.reciever)
