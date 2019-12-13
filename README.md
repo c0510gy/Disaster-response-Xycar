@@ -25,6 +25,16 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 
 Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함되어 있고, Xycar에 원격으로 접속하는 컴퓨터에서 실행되는 노드는 `remote_side`에 포함되어 있다.
 
+##### Xycar부분에서 실행되는 노드
+* `xycar_driver`: 자율주행 수행 노드
+* `xycar_ad_controller`: Xycar이동 경로 및 이동 명령 창 출력 노드
+* `motor_control`: 모터 제어 노드
+* `ultrasonic`: 초음파 센서 수신 노드
+* `usb_cam`: usb camera에서 영상 데이터 수신 노드
+
+##### Remote부분에서 실행되는 노드
+* `xycar_remote`: YOLOv3를 이용한 사물인식 
+
 #### 코드 설정
 * Remote 부분
 
