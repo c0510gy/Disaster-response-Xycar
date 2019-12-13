@@ -21,6 +21,10 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 
 ### 실행 방법
 
+#### 코드 구조
+
+Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함되어 있고, Xycar에 원격으로 접속하는 컴퓨터에서 실행되는 노드는 `remote_side`에 포함되어 있다.
+
 #### 코드 설정
 * Remote 부분
 
