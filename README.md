@@ -55,7 +55,31 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 * `/ultrasonic`: 초음파 센서 정보 전달
 * `/usb_cam/image_raw`: usb camera가 촬영한 이미지 정보 
 
-### 
+### 실행시 모습
+
+#### Xycar의 경로 및 목적지를 설정하는 창
+
+각 색이 의미하는 것은 다음과 같다.
+* 파랑색: Xycar의 현재 지점
+* 초록색: 계산한 경로
+* 노랑색: 사용자가 설정한 목적지
+* 빨간색: Xycar가 탐지한 장애물
+
+* 실행 직후 화면
+![Controller_main](./images/xycar_AD_Controller_main.png)
+
+* 목적지 설정 직후 화면1
+![Controller_path1](./images/xycar_AD_Controller_path1.png)
+
+* 목적지 설정 직후 화면2
+![Controller_path2](./images/xycar_AD_Controller_path2.png)
+
+* 장애물 탐지 직후 화면1
+![Controller_path3](./images/xycar_AD_Controller_path3.png)
+
+* 장애물 탐지 직후 화면2
+![Controller_path4](./images/xycar_AD_Controller_path4.png)
+
 
 ### 실행 방법
 
