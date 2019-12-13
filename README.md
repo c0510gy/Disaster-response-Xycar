@@ -66,18 +66,23 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 * 빨간색: Xycar가 탐지한 장애물
 
 * 실행 직후 화면
+
 ![Controller_main](./images/xycar_AD_Controller_main.png)
 
 * 목적지 설정 직후 화면1
+
 ![Controller_path1](./images/xycar_AD_Controller_path1.png)
 
 * 목적지 설정 직후 화면2
+
 ![Controller_path2](./images/xycar_AD_Controller_path2.png)
 
 * 장애물 탐지 직후 화면1
+
 ![Controller_path3](./images/xycar_AD_Controller_path3.png)
 
 * 장애물 탐지 직후 화면2
+
 ![Controller_path4](./images/xycar_AD_Controller_path4.png)
 
 
