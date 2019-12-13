@@ -19,6 +19,8 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 
 * 목표: 도로를 인식할 수 없는 상황에서 Xycar가 장애물(Stop sign)을 인식하고 사용자가 설정한 목적지까지 장애물을 피해 이동할 수 있는 경로를 계산하여 자율주행하도록 한다.
 
+* 제약사항: Xycar의 IMU센서를 이용하여 정밀한 위치를 계산할 계획이었지만, IMU센서가 켈리브레이션 되어 있지 않아 IMU센서의 데이터를 사용할 수 없었다. 따라서 각 위치를 일정 크기의 Grid로 표현하여 위치를 파악하는 것으로 축소하였다.
+
 ### ROS 구조
 
 #### 노드 구조
