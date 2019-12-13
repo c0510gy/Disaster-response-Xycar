@@ -1,0 +1,3 @@
+<launch>
+    <node name="xycar_ad_remote" pkg="xycar_ad_remote" type="xycar_ad_remote.py" output="screen" />
+</launch>
