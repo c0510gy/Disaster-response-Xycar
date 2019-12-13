@@ -44,7 +44,6 @@ class MapPainter(QWidget):
 		painter.begin(self)
 		painter.setPen(QPen(Qt.black, 2, Qt.SolidLine))
 		
-		#painter.drawRect(100, 15, 400, 200)
 		for y in range(self.h):
 			for x in range(self.w):
 				if self.mapinfo[y][x] == 0:
@@ -85,7 +84,6 @@ class Controller(QWidget, QObject):
 		self.mapPainter = MapPainter(self.showWidth, self.showHeight, self.showSize, self)
 		
 		grid = QGridLayout()
-		#grid.addWidget(self.edit, 0, 0)
 		grid.addWidget(self.mapPainter, 0, 0)
 		
 		self.setLayout(grid)
@@ -115,18 +113,14 @@ class Controller(QWidget, QObject):
 		self.w, self.h = self.currentMap[:2]
 		showMap = []
 		
-		m = ''
 		for y in range(self.showHeight):
 			r = []
 			for x in range(self.showWidth):
-				#if currentMap[y][x] == 
 				px = self.w // 2 - self.showWidth // 2 + x
 				py = self.h // 2 - self.showHeight // 2 + y
 				m += str(self.currentMap[2 + py * self.w + px])
 				r.append(self.currentMap[2 + py * self.w + px])
 			showMap.append(r)
-			m += '\n'
-		self.edit.setText(m)
 		self.mapPainter.setMapInfo(showMap)
 	
 
