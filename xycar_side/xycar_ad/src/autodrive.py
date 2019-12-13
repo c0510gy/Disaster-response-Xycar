@@ -5,35 +5,29 @@
 import rospy
 import time
 
-import pickle
-from linedetector import LineDetector
-from obstacledetector import ObstacleDetector
 from motordriver import MotorDriver
-from imuread import ImuRead
+#from imuread import ImuRead
 from camimage import CamImage
+from shortest_path import SPF
 
 from std_msgs.msg import Int32MultiArray
 from sensor_msgs.msg import Image
 
 import numpy as np
 import cv2
-from shortest_path import SPF
-#import controller
 
 class AutoDrive:
 
     def __init__(self):
         self.image_width = 640 # 이미지의 너비
         rospy.init_node('xycar_driver')
-        self.line_detector = LineDetector('/usb_cam/image_raw')
-        self.obstacle_detector = ObstacleDetector('/ultrasonic')
         self.driver = MotorDriver('/xycar_motor_msg')
 
 	self.cam_image = CamImage('/usb_cam/image_raw')
 	self.pub = rospy.Publisher('/remote_rec', Image, queue_size=1)
 	rospy.Subscriber('/remote_pub', Int32MultiArray, self.get_yolo_result)
+	
 	rospy.Subscriber('/xycar_ad_controller/controller_msg', Int32MultiArray, self.get_controller_msg)
-
 	self.cont_pub = rospy.Publisher('/xycar_ad/controller_msg', Int32MultiArray, queue_size=1)
 
 	self.yolo_dat = None
@@ -122,94 +116,22 @@ class AutoDrive:
 	time.sleep(0.1)
 	self.driver.drive(90, 90)
 
-    def trace(self):
-        obs_l, obs_m, obs_r = self.obstacle_detector.get_distance()
-        nline_l, nline_r = self.line_detector.detect_lines()
-        if nline_l != -1:
-            self.line_l = nline_l
-        if nline_r != -1:
-            self.line_r = nline_r
-	#print('lr: ', self.line_l, self.line_r)
-        
-        angle = self.steer(self.line_l, self.line_r)
-        speed = self.accelerate(angle, obs_l, obs_m, obs_r)
-	if speed == 0:
-		pass
-		#self.line_detector.show_images(self.line_l, self.line_r)
-	print('drive: ', angle, speed)
-
-        self.driver.drive(angle + 90, speed + 90)
-
-    def steer(self, left, right):
-        if left == -1 or right == -1:
-            return 0
-        
-        mid = (left + right) >> 1
-	true_mid = self.image_width // 2
-	dd = 15
-	mdd = 20
-	#return 3 * (mid - true_mid)
-	angle = 60 * int((mid - true_mid) / true_mid)
-	if abs(mid - true_mid) < 13:
-            angle = 0
-	elif abs(mid - true_mid) <= 20:
-            angle = 10
-	elif abs(mid - true_mid) <= 35:
-            angle = 13
-	else:
-	    angle = abs(mid - true_mid) - 5
-	if mid < true_mid:
-	    angle *= -1
-        return angle
-
-    def accelerate(self, angle, left, mid, right):
-	if mid < 0:
-            mid = 100
-	if left < 0:
-            left = 100
-        if right < 0:
-            right = 100
-
-	#if mid < 40:
-        #    speed = 0
-        #elif min(left, right) < 50:
-        #    speed = 30
-	if abs(angle) <= 10:
-            speed = 50
-	elif abs(angle) <= 13:
-            speed = 40
-	else:
-            speed = 35
-	'''
-        elif angle == 0:
-            speed = 50
-        else:
-            speed = 40
-	'''
-        return speed
-
-    def exit(self):
-        print('finished')
 
 if __name__ == '__main__':
     car = AutoDrive()
     time.sleep(10)
     rate = rospy.Rate(60)
-    #cont = controller.Controller()
-    #car.turn()
     print('started')
-    #car.turn()
+    
     path, currentMap = car.get_shortest_path()
-    #print(currentMap)
     car.cont_pub.publish(Int32MultiArray(data=currentMap))
+    
     while not rospy.is_shutdown():
 	while car.x == car.dx and car.y == car.dy:
 		time.sleep(1)
 	
 	path, currentMap = car.get_shortest_path()
-	#print(currentMap)
 	car.cont_pub.publish(Int32MultiArray(data=currentMap))
-	#cont.setText(currentMap)
 	print(path)
 	go_dir = 0
 	next_p = [path[0][0], path[0][1]]
@@ -260,14 +182,5 @@ if __name__ == '__main__':
 			#break
 	car.yolo_dat = None
 	time.sleep(3)
-	#print(car.yolo_dat)
-    #f = open('/home/nvidia/sensor_datas.pickle', 'wb')
-    #pickle.dump(car.datas, f)
-    #f.close()
-    #print(car.datas)
-	#print(car.f)
-    #while True:
-    #    if cv2.waitKey(1) & 0xFF == 27:
-#		break
-#    	cv2.imshow("map", car.map)
-    rospy.on_shutdown(car.exit)
+    
+    rospy.on_shutdown()
