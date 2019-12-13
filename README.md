@@ -26,6 +26,8 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 
 Remote 부분의 `xycar_ad_remote.py` 코드의 `RemoteXycar`클래스에 정의되어 있는 `yolo_path`의 경로를 실행자의 환경에 맞게 수정해 준다. 해당 변수에는 YOLO의 위치가 들어간다.
 
+YOLO를 이용한 사물인식을 담당하는 `yolo.py` 또한 경로를 절대경로로 수정해 주는 것이 좋다. 만약 절대경로로 수정하지 않은 경우, 터미널의 경로를 `yolo.py`가 존재하는 위치로 해두면 된다.
+
 #### ROS 환경변수 설정
 * Remote 부분
 
