@@ -63,6 +63,21 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 * `/ultrasonic`: 초음파 센서 정보 전달
 * `/usb_cam/image_raw`: usb camera가 촬영한 이미지 정보 
 
+### 3.4. 각 모듈의 역할
+
+* Remote 부분
+ * `xycar_ad_remote.py`: `/remote_rec`토픽으로 부터 이미지 데이터를 받아 YOLO를 수행하고 결과를 `/remote_pub`토픽으로 발행하는 모듈
+ * `yolo.py`: 이미지 데이터를 입력받고 인식 결과를 표준출력으로 출력하는 모듈
+* Xycar 부분
+ * `xycar_driver` 노드
+  * `autodrive.py`: YOLO인식 결과인 `/remote_pub`토픽과 사용자가 입력한 목적지 정보인 `/xycar_ad_controller/controller_msg`토픽으로 부터 정보를 받고 `shortest_path` 모듈로 부터 계산된 경로를 바탕으로 자율주행을 수행하는 모듈
+  * `camimage.py`: `/usb_cam/image_raw`토픽에서 카메라가 촬영한 이미지를 받아오는 모듈
+  * `imuread.py`: IMU센서 데이터를 가져오는 모듈 (IMU센서의 문제로 사용하지 않음)
+  * `motordriver.py`: `/xycar_motor_msg`토픽으로 모터 제어 정보를 발행하는 모듈
+  * `shortest_path.py`: 현재 위치, 장애물 정보, 목적 위치를 관리하고 최단 경로를 계산하는 모듈
+ * `xycar_ad_controller` 노드
+  * `controller.py`: 현재 xycar의 위치와 앞으로의 경로를 출력하고 사용자로 부터 목적지를 명령받는 PyQt를 이용한 GUI창 출력하는 
+
 ### 4. 실행시 모습
 
 #### 4.1 Xycar의 경로 및 목적지를 설정하는 창
