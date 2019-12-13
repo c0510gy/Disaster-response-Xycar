@@ -33,6 +33,7 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 
 ![ROS_specific_structure](./images/xycar_AD_ROS_structrue_cooler_version.png)
 
+#### 각 노드의 역할
 
 ##### Xycar부분에서 실행되는 노드
 * `xycar_driver`: 자율주행 수행 노드
@@ -43,6 +44,18 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 
 ##### Remote부분에서 실행되는 노드
 * `xycar_remote`: YOLOv3를 이용한 사물인식 노드
+
+#### 각 토픽의 역할
+
+* `/xycar_ad/controller_msg`: 경로를 포함한 지도 정보를 전달
+* `/xycar_ad_controller/controller_msg`: 사용자가 목적지를 설정한 정보를 전달
+* `/remote_rec`: xycar가 촬영한 이미지 정보 전달
+* `/remote_pub`: YOLOv3가 판단한 사물 인식 정보 전달
+* `/xycar_motor_msg`: 모터 제어 정보 전달
+* `/ultrasonic`: 초음파 센서 정보 전달
+* `/usb_cam/image_raw`: usb camera가 촬영한 이미지 정보 
+
+### 
 
 ### 실행 방법
 
