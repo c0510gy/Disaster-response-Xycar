@@ -19,11 +19,20 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 
 * 목표: 도로를 인식할 수 없는 상황에서 Xycar가 장애물(Stop sign)을 인식하고 사용자가 설정한 목적지까지 장애물을 피해 이동할 수 있는 경로를 계산하여 자율주행하도록 한다.
 
-### 실행 방법
+### ROS 구조
 
-#### 코드 구조
+#### 노드 구조
 
 Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함되어 있고, Xycar에 원격으로 접속하는 컴퓨터에서 실행되는 노드는 `remote_side`에 포함되어 있다.
+
+실행시 노드 구조는 다음과 같다.
+
+![ROS_structure](./images/xycar_ad_ROS_structure.png)
+
+토픽을 포함한 자세한 구조는 다음과 같다.
+
+![ROS_specific_structure](./images/xycar_AD_ROS_structrue_cooler_version.png)
+
 
 ##### Xycar부분에서 실행되는 노드
 * `xycar_driver`: 자율주행 수행 노드
@@ -33,7 +42,9 @@ Xycar에서 실행되는 ROS패키지에 대한 코드는 `xycar_side`에 포함
 * `usb_cam`: usb camera에서 영상 데이터 수신 노드
 
 ##### Remote부분에서 실행되는 노드
-* `xycar_remote`: YOLOv3를 이용한 사물인식 
+* `xycar_remote`: YOLOv3를 이용한 사물인식 노드
+
+### 실행 방법
 
 #### 코드 설정
 * Remote 부분
