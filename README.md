@@ -134,7 +134,7 @@ sudo ufw disable
 
 만약 Remote에서 package를 찾을 수 없다는 에러가 발생할 경우 다음의 코드를 Workspace 디렉토리에서 다음의 명령어를 입력해준다.
 ```
-source devel setup.bash
+source devel/setup.bash
 ```
 
 * Xycar 부분
