@@ -8,6 +8,7 @@ Disaster response Xycar is disaster response robot that made out of Xycar.
 [창업연계공학설계입문 AD Project 보고서.pdf](./%EC%B0%BD%EC%97%85%EC%97%B0%EA%B3%84%EA%B3%B5%ED%95%99%EC%84%A4%EA%B3%84%EC%9E%85%EB%AC%B8%20AD%20Project%20%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf)
 
 #### 0.2. 발표 자료
+[창업연계공학설계입문 AD Project 발표자료.pdf](./창업연계공학설계입문%20AD%20Project%20발표자료.pdf)
 
 #### 0.3. 시연 영상
 [![YoutubeVid](http://img.youtube.com/vi/-Z-51LyJsyk/0.jpg)](http://www.youtube.com/watch?v=-Z-51LyJsyk)
